@@ -28,7 +28,7 @@
     {{#if_or typescript lint}}
     "build": "npm run lint && node build/build.js",
     {{/if_or}}
-    {{/if_and_not typescript lint}}
+    {{#if_and_not typescript lint}}
     "build": "node build/build.js"{{/if_and_not}}{{#publish}},
     "clear-cache": "rm -rf node_modules/.1.0.0@gh-pages/.cache && rm -rf node_modules/gh-pages/.cache",
     "publish": "npm run build && npm run clear-cache && node build/publish.js test",
