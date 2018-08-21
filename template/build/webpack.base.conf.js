@@ -51,9 +51,9 @@ function createHappyPlugin (id, loaders) {
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
-    {{#!typescript}}
+    {{#if_not typescript}}
     app: './src/main.js'
-    {{/!typescript}}
+    {{/if_not}}
     {{#typescript}}
     app: './src/main.ts'
     {{/typescript}}
