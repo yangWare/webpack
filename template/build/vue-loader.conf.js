@@ -7,12 +7,12 @@ const sourceMapEnabled = isProduction
   : config.dev.cssSourceMap
 
 module.exports = {
-  {{#!typescript}}
+  {{#if_not typescript}}
   loaders: utils.cssLoaders({
     sourceMap: sourceMapEnabled,
     extract: isProduction
   }),
-  {{/!typescript}}
+  {{/if_not}}
   {{#typescript}}
   loaders: merge(
     utils.cssLoaders({
