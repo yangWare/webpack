@@ -14,7 +14,9 @@ exports.sortDependencies = function sortDependencies(data) {
     data.inPlace ? '' : data.destDirName,
     'package.json'
   )
-  const packageJson = JSON.parse(fs.readFileSync(packageJsonFile))
+  let packageObj = fs.readFileSync(packageJsonFile)
+  console.log(packageObj)
+  const packageJson = JSON.parse(packageObj)
   packageJson.devDependencies = sortObject(packageJson.devDependencies)
   packageJson.dependencies = sortObject(packageJson.dependencies)
   fs.writeFileSync(packageJsonFile, JSON.stringify(packageJson, null, 2) + '\n')
