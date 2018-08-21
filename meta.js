@@ -27,6 +27,13 @@ module.exports = {
 
       return options.inverse(this)
     },
+    if_and(v1, v2, options) {
+      if (v1 && v2) {
+        return options.fn(this)
+      }
+
+      return options.inverse(this)
+    },
     template_version() {
       return templateVersion
     },
@@ -74,8 +81,25 @@ module.exports = {
       type: 'confirm',
       message: 'Install vue-router?',
     },
-    lint: {
+    vuex: {
       when: 'isNotTest',
+      type: 'confirm',
+      message: 'Install vuex?',
+    },
+    // add ts prompt
+    typescript: {
+      when: 'isNotTest',
+      type: 'confirm',
+      message: 'Use TypeScript?',
+    },
+    // tslint强绑定在ts上
+    // tslint: {
+    //   when: 'isNotTest && typescript',
+    //   type: 'confirm',
+    //   message: 'Use TSLint to lint your code?',
+    // },
+    lint: {
+      when: 'isNotTest && !typescript',
       type: 'confirm',
       message: 'Use ESLint to lint your code?',
     },
@@ -158,6 +182,14 @@ module.exports = {
     },
   },
   filters: {
+    'tsconfig.json': 'typescript',
+    'tslint.json': 'typescript',
+    'src/*.ts': 'typescript',
+    'src/**/*.ts': 'typescript',
+    'src/store/modules/**/*.ts': 'typescript',
+    'src/*.js': '!typescript',
+    'src/**/*.js': '!typescript',
+    'src/store/modules/**/*.js': '!typescript',
     '.eslintrc.js': 'lint',
     '.eslintignore': 'lint',
     'config/test.env.js': 'unit || e2e',
