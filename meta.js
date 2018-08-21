@@ -104,7 +104,7 @@ module.exports = {
       message: 'Use ESLint to lint your code?',
     },
     lintConfig: {
-      when: 'isNotTest && lint',
+      when: 'isNotTest && !typescript && lint',
       type: 'list',
       message: 'Pick an ESLint preset',
       choices: [
